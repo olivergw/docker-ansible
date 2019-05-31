@@ -1,11 +1,5 @@
-FROM ubuntu:18.04
+FROM alpine
 
-RUN apt-get update
-RUN apt-get upgrade -y && \
-    apt-get install python-pip openssh-client -y
-
-RUN pip install ansible
-
-RUN rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ansible openssh-client
 
 CMD [ "ansible-playbook", "--version" ]
